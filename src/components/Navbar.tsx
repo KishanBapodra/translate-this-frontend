@@ -2,6 +2,7 @@ import axios from "axios";
 import useUser from "../states/useUser";
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { userLoggedIn, logOut } = useUser();
@@ -21,9 +22,9 @@ const Navbar = () => {
   return (
     <nav className="navbar p-3 sm:py-6 sm:px-8 bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost text-3xl" href="/">
+        <Link className="btn btn-ghost text-3xl" to={"/"}>
           TranslateThis
-        </a>
+        </Link>
       </div>
       <div className="flex-none gap-5">
         {!userLoggedIn ? (

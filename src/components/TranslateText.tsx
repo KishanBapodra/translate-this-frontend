@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const TranslateText = () => {
   const [text, setText] = useState("");
+  const [language, setLanguage] = useState("hindi");
   const { userId } = useUser();
   const navigate = useNavigate();
 
@@ -13,17 +14,24 @@ const TranslateText = () => {
       "http://localhost:3333/translate",
       {
         originalText: text,
-        language: "hindi",
-        userId: userId,
+        language,
+        userId,
       },
       { withCredentials: true }
     );
+
     const { translatedText, id } = response.data;
-    navigate(`/t/${id}`, { state: { translatedText: translatedText[0].text } });
+    navigate(`/t/${id}`, {
+      state: { language, translatedText: translatedText[0].text },
+    });
   };
 
   const handleTextChange = (e: any) => {
     setText(e.target.value);
+  };
+
+  const handleLanguageChange = (e: any) => {
+    setLanguage(e.target.value);
   };
 
   return (
@@ -35,6 +43,18 @@ const TranslateText = () => {
         onChange={handleTextChange}
       />
       <div className="flex justify-center sm:justify-end w-11/12 max-w-3xl">
+        <select
+          className="select select-bordered mr-2"
+          defaultValue={language}
+          onChange={handleLanguageChange}
+        >
+          <option value="Hindi">Hindi</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Malyalam">Malyalam</option>
+          <option value="Gujarati">Gujarati</option>
+        </select>
         <button
           onClick={handleTranslate}
           className="btn btn-primary btn-md ml-4"

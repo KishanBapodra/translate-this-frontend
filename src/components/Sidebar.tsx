@@ -16,7 +16,7 @@ const Sidebar = () => {
             withCredentials: true,
           }
         );
-        console.log("Hello: ", response.data.translations);
+
         setTextFiles(response.data.translations);
       } catch (err) {
         console.error(err);
@@ -37,7 +37,10 @@ const Sidebar = () => {
             <li key={text._id} className="mb-2">
               <Link
                 to={`/t/${text._id}`}
-                state={{ translatedText: text.translatedText[0].text }}
+                state={{
+                  language: text.language,
+                  translatedText: text.translatedText[0].text,
+                }}
                 className="text-blue-500 hover:text-blue-700"
               >
                 File {index + 1}
