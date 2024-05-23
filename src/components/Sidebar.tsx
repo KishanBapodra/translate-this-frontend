@@ -27,12 +27,12 @@ const Sidebar = () => {
   }, [userId]);
 
   return (
-    <div className="bg-gray-200 p-4 h-full">
-      <h2 className="text-lg font-bold mb-4">Translated Texts</h2>
+    <div className="bg-base-300 pt-4 px-2 rounded-lg h-full overflow-y-scroll">
+      <h2 className="text-lg text-center font-bold mb-4">Translated Texts</h2>
       {textFiles.length === 0 ? (
-        <p>No translated texts available.</p>
+        <p className="text-center">Go ahead, Translate some</p>
       ) : (
-        <ul>
+        <ul className="menu text-base-content">
           {textFiles.map((text, index) => (
             <li key={text._id} className="mb-2">
               <Link
@@ -41,9 +41,8 @@ const Sidebar = () => {
                   language: text.language,
                   translatedText: text.translatedText[0].text,
                 }}
-                className="text-blue-500 hover:text-blue-700"
               >
-                File {index + 1}
+                File {index + 1}: {text.language}
               </Link>
             </li>
           ))}

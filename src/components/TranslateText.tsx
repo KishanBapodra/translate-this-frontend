@@ -10,6 +10,11 @@ const TranslateText = () => {
   const navigate = useNavigate();
 
   const handleTranslate = async () => {
+    if (!userId) {
+      alert("Please login to translate the text");
+      return;
+    }
+
     const response = await axios.post(
       "http://localhost:3333/translate",
       {
@@ -26,16 +31,16 @@ const TranslateText = () => {
     });
   };
 
-  const handleTextChange = (e: any) => {
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
-  const handleLanguageChange = (e: any) => {
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
   };
 
   return (
-    <div className=" h-full flex flex-col justify-center items-center gap-5">
+    <div className=" h-full flex flex-col items-center gap-5">
       <textarea
         placeholder="Enter text to translate..."
         className="textarea textarea-bordered textarea-lg h-5/6 w-11/12 max-w-3xl"

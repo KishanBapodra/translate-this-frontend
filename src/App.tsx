@@ -14,9 +14,9 @@ function App() {
         <div>
           <Navbar />
         </div>
-        <div className="flex flex-1 justify-center">
+        <div className="flex justify-center h-5/6 mt-10 sm:mt-0">
           {userLoggedIn && (
-            <div className="hidden sm:block w-1/5 m-8">
+            <div className="hidden md:block w-1/5 ml-8 my-3">
               <Sidebar />
             </div>
           )}
