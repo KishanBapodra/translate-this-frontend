@@ -6,7 +6,7 @@ import Sidebar from "./components/Sidebar";
 import useUser from "./states/useUser";
 
 function App() {
-  const { userLoggedIn } = useUser();
+  const userLoggedIn = useUser((state) => state.userLoggedIn);
 
   return (
     <Router>

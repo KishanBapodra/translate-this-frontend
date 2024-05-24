@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import useUser from "../states/useUser";
 import { useNavigate } from "react-router-dom";
+import useTranslations from "../states/useTranslations";
 
 const TranslateText = () => {
   const [text, setText] = useState("");
-  const [language, setLanguage] = useState("hindi");
-  const { userId } = useUser();
+  const [language, setLanguage] = useState("Hindi");
+  const userId = useUser((state) => state.userId);
+  const addTranslation = useTranslations((state) => state.addTranslation);
   const navigate = useNavigate();
 
   const handleTranslate = async () => {
@@ -26,6 +28,14 @@ const TranslateText = () => {
     );
 
     const { translatedText, id } = response.data;
+    addTranslation({
+      language,
+      originalText: text,
+      translatedText,
+      userId,
+      _id: id,
+    });
+
     navigate(`/t/${id}`, {
       state: { language, translatedText: translatedText[0].text },
     });

@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useUser from "../states/useUser";
 import { Link } from "react-router-dom";
+import useTranslations from "../states/useTranslations";
 
 const Sidebar = () => {
-  const [textFiles, setTextFiles] = useState([]);
-  const { userId } = useUser();
+  const { translations, setTranslations } = useTranslations();
+  const userId = useUser((state) => state.userId);
 
   useEffect(() => {
     const fetchTexts = async () => {
@@ -16,24 +17,23 @@ const Sidebar = () => {
             withCredentials: true,
           }
         );
-
-        setTextFiles(response.data.translations);
+        setTranslations(response.data.translations);
       } catch (err) {
         console.error(err);
       }
     };
 
     fetchTexts();
-  }, [userId]);
+  }, [userId, setTranslations]);
 
   return (
     <div className="bg-base-300 pt-4 px-2 rounded-lg h-full overflow-y-scroll">
       <h2 className="text-lg text-center font-bold mb-4">Translated Texts</h2>
-      {textFiles.length === 0 ? (
+      {translations.length === 0 ? (
         <p className="text-center">Go ahead, Translate some</p>
       ) : (
         <ul className="menu text-base-content">
-          {textFiles.map((text, index) => (
+          {translations.map((text, index) => (
             <li key={text._id} className="mb-2">
               <Link
                 to={`/t/${text._id}`}
