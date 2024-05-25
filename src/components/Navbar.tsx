@@ -2,11 +2,12 @@ import axios from "axios";
 import useUser from "../hooks/useUser";
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const userLoggedIn = useUser((state) => state.userLoggedIn);
   const logOut = useUser((state) => state.logOut);
+  const navigate = useNavigate();
 
   const handleLogOut = async () => {
     try {
@@ -16,6 +17,7 @@ const Navbar = () => {
         { withCredentials: true }
       );
       logOut();
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
