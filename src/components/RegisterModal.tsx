@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import useUser from "../states/useUser";
+import { useState } from "react";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 const RegisterModal = () => {
   const { register, handleSubmit, reset } = useForm();
   const { logIn, setUserId } = useUser();
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleClose = () => {
     reset();
   };
@@ -25,9 +29,14 @@ const RegisterModal = () => {
       setUserId(response.data.userId);
 
       (document.getElementById("register_modal") as HTMLDialogElement).close();
+      reset();
     } catch (err) {
       alert(err.response.data.error);
     }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -60,13 +69,22 @@ const RegisterModal = () => {
             placeholder="Email"
             {...register("email", { required: true })}
           />
-          <input
-            id="registerPassword"
-            className="input input-bordered w-full"
-            type="password"
-            placeholder="Password"
-            {...register("password", { required: true })}
-          />
+          <div className="relative">
+            <input
+              id="registerPassword"
+              className="input input-bordered w-full"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              {...register("password", { required: true })}
+            />
+            <button
+              type="button"
+              className="absolute text-xl right-2 top-1/2 -translate-y-1/2"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+            </button>
+          </div>
           <div className="modal-action mt-3">
             <button type="submit" className="btn">
               Signup
