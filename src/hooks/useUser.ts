@@ -12,7 +12,7 @@ const useUser = create<UserState>((set) => ({
   userLoggedIn: false,
   userId: "",
   logIn: () => set({ userLoggedIn: true }),
-  logOut: () => set({ userLoggedIn: false }),
+  logOut: () => set({ userLoggedIn: false, userId: "" }),
   setUserId: (userId: string) => set({ userId }),
 }));
 

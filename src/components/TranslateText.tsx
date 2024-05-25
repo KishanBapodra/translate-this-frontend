@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import useTranslations from "../hooks/useTranslations";
+import { debounce } from "lodash";
 
 const TranslateText = () => {
   const [text, setText] = useState("");
@@ -10,6 +11,26 @@ const TranslateText = () => {
   const userId = useUser((state) => state.userId);
   const addTranslation = useTranslations((state) => state.addTranslation);
   const navigate = useNavigate();
+
+  const saveTranslation = useCallback((text: string) => {
+    try {
+      axios.post(
+        "http://localhost:3333/save-translation",
+        {
+          originalText: text,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (err) {
+      console.error("Error saving translation", err);
+    }
+  }, []);
+
+  const debouncedSaveTranslation = useMemo(() => {
+    return debounce(saveTranslation, 3000);
+  }, [saveTranslation]);
 
   const handleTranslate = async () => {
     if (!userId) {
@@ -42,7 +63,9 @@ const TranslateText = () => {
   };
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
+    const text = e.target.value;
+    setText(text);
+    debouncedSaveTranslation(text);
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
