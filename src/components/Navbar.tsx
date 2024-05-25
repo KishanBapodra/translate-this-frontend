@@ -26,7 +26,10 @@ const Navbar = () => {
           TranslateThis
         </Link>
       </div>
-      <div className="flex-none gap-5">
+      <div className="gap-5">
+        <Link className="btn px-2 text-lg" to={"/"}>
+          Home
+        </Link>
         {!userLoggedIn ? (
           <>
             <button

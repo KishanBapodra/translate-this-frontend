@@ -46,14 +46,14 @@ const LoginModal = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
-            id="email"
+            id="loginEmail"
             className="input input-bordered w-full"
             type="text"
             placeholder="Email"
             {...register("email", { required: true })}
           />
           <input
-            id="password"
+            id="loginPassword"
             className="input input-bordered w-full"
             type="password"
             placeholder="Password"

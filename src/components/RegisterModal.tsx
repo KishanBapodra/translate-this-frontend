@@ -54,14 +54,14 @@ const RegisterModal = () => {
             {...register("name", { required: true })}
           />
           <input
-            id="email"
+            id="registerEmail"
             className="input input-bordered w-full"
             type="text"
             placeholder="Email"
             {...register("email", { required: true })}
           />
           <input
-            id="password"
+            id="registerPassword"
             className="input input-bordered w-full"
             type="password"
             placeholder="Password"
