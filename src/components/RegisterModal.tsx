@@ -25,8 +25,8 @@ const RegisterModal = () => {
       setUserId(response.data.userId);
 
       (document.getElementById("register_modal") as HTMLDialogElement).close();
-    } catch (error) {
-      console.error("Signup error:", error);
+    } catch (err) {
+      alert(err.response.data.error);
     }
   };
 
@@ -63,7 +63,7 @@ const RegisterModal = () => {
           <input
             id="password"
             className="input input-bordered w-full"
-            type="text"
+            type="password"
             placeholder="Password"
             {...register("password", { required: true })}
           />
