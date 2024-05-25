@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import useUser from "../states/useUser";
+import useUser from "../hooks/useUser";
 import { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 

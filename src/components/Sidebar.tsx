@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
-import useUser from "../states/useUser";
+import useUser from "../hooks/useUser";
 import { Link } from "react-router-dom";
-import useTranslations from "../states/useTranslations";
+import useTranslations from "../hooks/useTranslations";
 
 const Sidebar = () => {
   const { translations, setTranslations } = useTranslations();

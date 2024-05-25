@@ -1,5 +1,5 @@
 import axios from "axios";
-import useUser from "../states/useUser";
+import useUser from "../hooks/useUser";
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";

@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import TranslateText from "./components/TranslateText";
 import TranslatedText from "./components/TranslatedText";
 import Sidebar from "./components/Sidebar";
-import useUser from "./states/useUser";
+import useUser from "./hooks/useUser";
 
 function App() {
   const userLoggedIn = useUser((state) => state.userLoggedIn);

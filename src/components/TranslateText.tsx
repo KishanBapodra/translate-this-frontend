@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import useUser from "../states/useUser";
+import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
-import useTranslations from "../states/useTranslations";
+import useTranslations from "../hooks/useTranslations";
 
 const TranslateText = () => {
   const [text, setText] = useState("");
