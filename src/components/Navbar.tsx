@@ -5,7 +5,8 @@ import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { userLoggedIn, logOut } = useUser();
+  const userLoggedIn = useUser((state) => state.userLoggedIn);
+  const logOut = useUser((state) => state.logOut);
 
   const handleLogOut = async () => {
     try {

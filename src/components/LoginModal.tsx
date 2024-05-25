@@ -6,7 +6,8 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 const LoginModal = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { logIn, setUserId } = useUser();
+  const logIn = useUser((state) => state.logIn);
+  const setUserId = useUser((state) => state.setUserId);
   const [showPassword, setShowPassword] = useState(false);
   const handleClose = () => {
     reset();
