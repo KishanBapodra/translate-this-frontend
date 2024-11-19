@@ -12,7 +12,7 @@ const Sidebar = () => {
     const fetchTexts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3333/translations/${userId}`,
+          `${import.meta.env.BASE_URL}/translations/${userId}`,
           {
             withCredentials: true,
           }

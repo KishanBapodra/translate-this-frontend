@@ -16,7 +16,7 @@ const LoginModal = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await axios.post(
-        "http://localhost:3333/login",
+        `${import.meta.env.BASE_URL}/login`,
         {
           email: data.email,
           password: data.password,
@@ -29,8 +29,12 @@ const LoginModal = () => {
 
       (document.getElementById("login_modal") as HTMLDialogElement).close();
       reset();
-    } catch (err) {
-      alert(err.response.data.error);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response) {
+        alert(err.response.data.error);
+      } else {
+        alert('An unexpected error occurred');
+      }
     }
   };
 

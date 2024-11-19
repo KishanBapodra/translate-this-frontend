@@ -18,7 +18,7 @@ const RegisterModal = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await axios.post(
-        "http://localhost:3333/register",
+       `${import.meta.env.BASE_URL}/register`,
         {
           name: data.name,
           email: data.email,
@@ -32,8 +32,12 @@ const RegisterModal = () => {
 
       (document.getElementById("register_modal") as HTMLDialogElement).close();
       reset();
-    } catch (err) {
-      alert(err.response.data.error);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response) {
+        alert(err.response.data.error);
+      } else {
+        alert('An unexpected error occurred');
+      }
     }
   };
 

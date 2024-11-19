@@ -15,7 +15,7 @@ const TranslateText = () => {
   const saveTranslation = useCallback((text: string) => {
     try {
       axios.post(
-        "http://localhost:3333/save-translation",
+        `${import.meta.env.BASE_URL}/save-translation`,
         {
           originalText: text,
         },
@@ -39,7 +39,7 @@ const TranslateText = () => {
     }
 
     const response = await axios.post(
-      "http://localhost:3333/translate",
+      `${import.meta.env.BASE_URL}/translate`,
       {
         originalText: text,
         language,
