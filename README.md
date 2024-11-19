@@ -1,6 +1,7 @@
 # TranslateThis
 
-Frontend for TranslateThis made using Vite, React, Typescript, Zustand and DaisyUI (tailwindCSS plugin)
+Frontend for TranslateThis made using Vite, React, Typescript, Zustand and DaisyUI (tailwindCSS plugin)  
+Backend: https://github.com/KishanBapodra/translate-this-backend/  
 
 ### Install the required dependancies
 
