@@ -16,7 +16,7 @@ const LoginModal = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.BASE_URL}/login`,
+        `${import.meta.env.VITE_BASE_URL}/login`,
         {
           email: data.email,
           password: data.password,

@@ -18,7 +18,7 @@ const RegisterModal = () => {
   const onSubmit = async (data: any) => {
     try {
       const response = await axios.post(
-       `${import.meta.env.BASE_URL}/register`,
+       `${import.meta.env.VITE_BASE_URL}/register`,
         {
           name: data.name,
           email: data.email,
